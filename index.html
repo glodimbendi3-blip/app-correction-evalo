@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Evalo - Tableau de bord</title>
+
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- En-tête -->
+    <header class="header">
+
+        <div class="header-content">
+            <h1>Evalo<span>.</span></h1>
+            <p>Gestion des évaluations</p>
+        </div>
+
+    </header>
+
+    <main class="container">
+
+        <!-- Bienvenue -->
+        <section class="welcome">
+            <h2>Bonjour, Enseignant 👋</h2>
+            <p>Bienvenue sur votre espace de gestion scolaire.</p>
+        </section>
+
+        <!-- Statistiques -->
+        <section class="statistics">
+
+            <div class="stat-card">
+                <p>Examens</p>
+                <h3 id="total-examens">0</h3>
+            </div>
+
+            <div class="stat-card">
+                <p>Élèves</p>
+                <h3 id="total-eleves">0</h3>
+            </div>
+
+            <div class="stat-card">
+                <p>Copies corrigées</p>
+                <h3 id="total-copies">0</h3>
+            </div>
+
+        </section>
+
+        <!-- Menu principal -->
+        <section class="menu">
+
+            <h2>Menu principal</h2>
+
+            <div class="menu-list">
+
+                <a href="pages/creer-evaluation.html" class="menu-card">
+                    <div class="menu-icon">📝</div>
+                    <div>
+                        <h3>Créer un examen</h3>
+                        <p>Préparer une nouvelle évaluation.</p>
+                    </div>
+                </a>
+
+                <a href="pages/corriger-copie.html" class="menu-card">
+                    <div class="menu-icon">📷</div>
+                    <div>
+                        <h3>Corriger une copie</h3>
+                        <p>Scanner et corriger les copies.</p>
+                    </div>
+                </a>
+
+                <a href="pages/notes-eleves.html" class="menu-card">
+                    <div class="menu-icon">📊</div>
+                    <div>
+                        <h3>Notes des élèves</h3>
+                        <p>Consulter les résultats.</p>
+                    </div>
+                </a>
+
+                <a href="pages/liste-eleves.html" class="menu-card">
+                    <div class="menu-icon">👥</div>
+                    <div>
+                        <h3>Liste des élèves</h3>
+                        <p>Gérer les élèves enregistrés.</p>
+                    </div>
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- JS du tableau de bord -->
+    <script src="js/dashboard.js" defer></script>
+
+</body>
+</html>

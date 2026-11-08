@@ -1,0 +1,517 @@
+/* =================================
+   1. VARIABLES GLOBALES
+================================= */
+
+:root {
+
+    /* Couleurs principales */
+    --primary-color: #0B1F44;
+    --secondary-color: #2563EB;
+    --accent-color: #EF4444;
+
+    /* Arrière-plans */
+    --background-color: #F8FAFC;
+    --card-background: #FFFFFF;
+    --secondary-background: #E2E8F0;
+
+    /* Textes */
+    --text-primary: #0B1F44;
+    --text-secondary: #64748B;
+
+    /* Bordures */
+    --border-color: #E2E8F0;
+
+    /* Arrondis */
+    --border-radius: 12px;
+}
+
+
+/* =================================
+   2. RESET CSS
+================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =================================
+   3. STYLES GÉNÉRAUX
+================================= */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-primary);
+}
+
+
+/* =================================
+   4. HEADER
+================================= */
+
+.header {
+    background-color: var(--card-background);
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header h1 {
+    font-size: 28px;
+    color: var(--primary-color);
+}
+
+.header h1 span {
+    color: var(--secondary-color);
+}
+
+.header p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+
+/* =================================
+   5. CONTENU PRINCIPAL
+================================= */
+
+.container {
+    width: 92%;
+    max-width: 1000px;
+    margin: 25px auto;
+}
+
+
+/* =================================
+   6. BIENVENUE
+================================= */
+
+.welcome {
+    margin-bottom: 25px;
+}
+
+.welcome h2 {
+    font-size: 21px;
+}
+
+.welcome p {
+    color: var(--text-secondary);
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+
+/* =================================
+   7. STATISTIQUES
+================================= */
+
+.statistics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 35px;
+}
+
+.stat-card {
+    background-color: var(--card-background);
+    padding: 18px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+.stat-card p {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.stat-card h3 {
+    font-size: 27px;
+    margin-top: 12px;
+    color: var(--primary-color);
+}
+
+
+/* =================================
+   8. MENU PRINCIPAL
+================================= */
+
+.menu h2 {
+    font-size: 19px;
+    margin-bottom: 15px;
+}
+
+.menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.menu-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 18px;
+    background-color: var(--card-background);
+
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+
+    text-decoration: none;
+    color: var(--text-primary);
+
+    transition: 0.2s;
+}
+
+.menu-card:hover {
+    border-color: var(--secondary-color);
+}
+
+.menu-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--secondary-background);
+    border-radius: 10px;
+
+    font-size: 22px;
+}
+
+.menu-card h3 {
+    font-size: 15px;
+}
+
+.menu-card p {
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+
+/* =================================
+   9. RESPONSIVE DESIGN
+================================= */
+
+/* Tablettes et ordinateurs */
+
+@media (min-width: 768px) {
+
+    .statistics {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .menu-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+
+/* =================================
+   FORMULAIRE DES ÉLÈVES
+================================= */
+/* Bouton retour */
+.back-link {
+    display: inline-block;
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+
+.form-section,
+.student-section {
+    background-color: var(--card-background);
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    margin-bottom: 25px;
+}
+
+.form-section h2,
+.student-section h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+}
+
+.form-group input:focus {
+    border-color: var(--secondary-color);
+}
+
+/* Bouton principal */
+
+.btn-primary {
+    width: 100%;
+    padding: 13px;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-background);
+}
+
+th, td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+}
+
+th {
+    background: var(--primary-color);
+    color: white;
+}
+
+td {
+    color: var(--text-primary);
+}
+
+
+
+.student-card {
+    background: var(--card-background);
+    padding: 18px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+.student-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.student-card p {
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+}
+
+
+
+.bareme-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    margin-bottom: 8px;
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+.bareme-item input {
+    width: 80px;
+}
+
+.total-points {
+    margin: 20px 0;
+    padding: 15px;
+    background: var(--secondary-background);
+    border-radius: var(--border-radius);
+    font-size: 18px;
+}
+
+#message-examen {
+    color: green;
+    margin-top: 15px;
+}
+
+
+/* Feuille OMR */
+
+.omr-sheet {
+    width: 297mm;
+    min-height: 210mm;
+    padding: 15mm;
+    margin: 20px auto;
+    background: white;
+    color: #0B1F44;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.omr-header {
+    text-align: center;
+    border-bottom: 2px solid #0B1F44;
+    padding-bottom: 10px;
+}
+
+.omr-header h1 {
+    margin: 0;
+    font-size: 25px;
+}
+
+.omr-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 35px;
+    margin-top: 20px;
+}
+
+.omr-content h2 {
+    font-size: 15px;
+}
+
+#grille-matricule,
+#grille-reponses {
+    margin-top: 15px;
+}
+
+.ligne-matricule,
+.ligne-reponse {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.ligne-matricule {
+    justify-content: flex-start;
+    gap: 15px;
+}
+
+.ligne-matricule span:first-child,
+.ligne-reponse > span {
+    width: 25px;
+    font-weight: bold;
+}
+
+.ligne-matricule .bulle {
+    margin-left: 17px;
+}
+
+.choix {
+    display: flex;
+    gap: 35px;
+}
+
+.choix div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bulle {
+    width: 15px;
+    height: 15px;
+    border: 1.5px solid black;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.omr-sheet footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 11px;
+}
+
+.repere {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: black;
+}
+
+.repere-1 { top: 5mm; left: 5mm; }
+.repere-2 { top: 5mm; right: 5mm; }
+.repere-3 { bottom: 5mm; left: 5mm; }
+.repere-4 { bottom: 5mm; right: 5mm; }
+
+@media print {
+    @page {
+        size: A4 landscape;
+        margin: 0;
+    }
+
+    body {
+        margin: 0;
+        background: white;
+    }
+
+    .omr-sheet {
+        margin: 0;
+        width: 297mm;
+        height: 210mm;
+    }
+
+    .no-print {
+        display: none;
+    }
+}
+
+
+#generer-feuille {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 20px;
+    background: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+#generer-feuille:hover {
+    opacity: 0.85;
+}
+
+
+#camera {
+    width: 100%;
+    max-width: 500px;
+    display: block;
+    margin: 20px auto;
+    border-radius: 10px;
+    background: black;
+}
+
+#demarrer-camera,
+#capturer {
+    margin-top: 10px;
+}
+

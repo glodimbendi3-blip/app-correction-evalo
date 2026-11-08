@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feuille OMR - Evalo</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/omr.js" defer></script>
+</head>
+<body>
+
+    <main class="omr-sheet">
+
+        <span class="repere repere-1"></span>
+        <span class="repere repere-2"></span>
+        <span class="repere repere-3"></span>
+        <span class="repere repere-4"></span>
+
+        <header class="omr-header">
+            <h1>EVALO</h1>
+            <p>FEUILLE DE RÉPONSES</p>
+        </header>
+
+        <div class="omr-content">
+
+            <section class="matricule-section">
+                <h2>IDENTIFICATION</h2>
+                <p>Remplir une bulle par colonne.</p>
+                <div id="grille-matricule"></div>
+            </section>
+
+            <section class="reponses-section">
+                <h2>GRILLE DES RÉPONSES</h2>
+                <p>Remplir une seule réponse par question.</p>
+                <div id="grille-reponses"></div>
+            </section>
+
+        </div>
+
+        <footer>
+            Utiliser un crayon ou un stylo noir/bleu.
+        </footer>
+
+    </main>
+
+    <button onclick="window.print()" class="btn-primary no-print">
+        Imprimer la feuille
+    </button>
+
+</body>
+</html>

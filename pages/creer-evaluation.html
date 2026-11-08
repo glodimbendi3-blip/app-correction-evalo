@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Créer une évaluation - Evalo</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/examen.js" defer></script>
+</head>
+
+<body>
+
+    <header class="page-header">
+        <h1>Evalo</h1>
+        <p>Créer une évaluation</p>
+    </header>
+
+    <main class="container">
+
+        <a href="../index.html" class="back-link">
+            ← Tableau de bord
+        </a>
+
+        <section class="form-section">
+
+            <h2>Nouvelle évaluation</h2>
+
+            <form id="form-examen">
+
+                <div class="form-group">
+                    <label for="titre">Intitulé de l'évaluation</label>
+                    <input type="text" id="titre" required
+                        placeholder="Ex : Interrogation HTML">
+                </div>
+
+                <div class="form-group">
+                    <label for="classe">Classe</label>
+
+                    <select id="classe" required>
+                        <option value="">Choisir une classe</option>
+                        <option value="1ère">1ère</option>
+                        <option value="2ème">2ème</option>
+                        <option value="3ème">3ème</option>
+                        <option value="4ème">4ème</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="option">Option</label>
+                    <input type="text" id="option"
+                        placeholder="Ex : Informatique">
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre-questions">
+                        Nombre de questions
+                    </label>
+
+                    <input type="number" id="nombre-questions"
+                        min="1" max="15" value="10" required>
+                </div>
+
+                <hr>
+
+                <h3>Barème des questions</h3>
+
+                <p>Attribuez les points à chaque question.</p>
+
+                <div id="liste-bareme"></div>
+
+                <div class="total-points">
+                    Total : <strong id="total-points">10</strong> points
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    Enregistrer l'évaluation
+                </button>
+
+                <p id="message-examen"></p>
+            <a href="#" id="generer-feuille" class="btn-primary" hidden>
+             Générer la feuille OMR
+</a>
+
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+</html>
