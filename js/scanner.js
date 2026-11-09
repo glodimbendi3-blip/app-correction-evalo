@@ -12,31 +12,39 @@ let opencvPret = false;
 
 // Attendre le chargement d'OpenCV
 window.addEventListener("load", function() {
+
     const verifierOpenCV = setInterval(function() {
+
         if (window.cv && cv.Mat) {
             opencvPret = true;
             clearInterval(verifierOpenCV);
             console.log("OpenCV est prêt.");
         }
+
     }, 500);
 });
 
 
 // Démarrer la caméra
 boutonDemarrer.addEventListener("click", async function() {
+
     try {
+
         fluxCamera = await navigator.mediaDevices.getUserMedia({
             video: { facingMode: "environment" },
             audio: false
         });
 
         camera.srcObject = fluxCamera;
+
         boutonCapturer.hidden = false;
         messageCamera.textContent = "Caméra activée.";
 
     } catch (erreur) {
+
         messageCamera.textContent = "Impossible d'accéder à la caméra.";
         console.error(erreur);
+
     }
 });
 
@@ -109,16 +117,19 @@ boutonCapturer.addEventListener("click", function() {
                 ratio < 1.25 &&
                 aire > (image.cols * image.rows * 0.0001)
             ) {
+
                 reperes.push({
                     x: rectangle.x + rectangle.width / 2,
                     y: rectangle.y + rectangle.height / 2
                 });
+
             }
         }
 
         approximation.delete();
         contour.delete();
     }
+
 
     // Vérifier le nombre de repères
     if (reperes.length !== 4) {
@@ -190,8 +201,24 @@ boutonCapturer.addEventListener("click", function() {
         cv.imshow(capture, redressee);
         capture.hidden = false;
 
-        messageCamera.textContent =
-            "4 repères détectés ! Feuille redressée.";
+        // Lire le matricule
+        const matricule = lireMatricule(
+            capture,
+            largeur,
+            hauteur
+        );
+
+        if (matricule !== null) {
+
+            messageCamera.textContent =
+                "Feuille redressée. Matricule détecté : " + matricule;
+
+        } else {
+
+            messageCamera.textContent =
+                "Feuille redressée, mais matricule incertain. Vérifiez les bulles.";
+
+        }
 
         // Libérer la mémoire
         source.delete();
@@ -208,3 +235,112 @@ boutonCapturer.addEventListener("click", function() {
     hierarchie.delete();
 });
 
+
+// Lire les six colonnes du matricule
+function lireMatricule(canvas, largeur, hauteur) {
+
+    // Récupérer les positions enregistrées
+    const positions = JSON.parse(
+        localStorage.getItem("evalo-positions-matricule")
+    );
+
+    if (!positions || positions.length !== 60) {
+
+        console.error("Les 60 positions du matricule sont introuvables.");
+        return null;
+
+    }
+
+    const contexte = canvas.getContext("2d");
+
+    const image = contexte.getImageData(
+        0,
+        0,
+        largeur,
+        hauteur
+    );
+
+    const pixels = image.data;
+
+    let matricule = "";
+
+    // Examiner chaque colonne
+    for (let colonne = 1; colonne <= 6; colonne++) {
+
+        const candidats = [];
+
+        // Examiner les dix bulles de la colonne
+        positions
+            .filter(function(position) {
+                return position.colonne === colonne;
+            })
+            .forEach(function(position) {
+
+                const centreX = Math.round(position.x * largeur);
+                const centreY = Math.round(position.y * hauteur);
+
+                let pixelsNoirs = 0;
+                let totalPixels = 0;
+
+                // Examiner le centre de la bulle
+                for (let y = centreY - 4; y <= centreY + 4; y++) {
+
+                    for (let x = centreX - 4; x <= centreX + 4; x++) {
+
+                        if (
+                            x < 0 ||
+                            y < 0 ||
+                            x >= largeur ||
+                            y >= hauteur
+                        ) {
+                            continue;
+                        }
+
+                        const index = (y * largeur + x) * 4;
+
+                        const rouge = pixels[index];
+                        const vert = pixels[index + 1];
+                        const bleu = pixels[index + 2];
+
+                        const luminosite =
+                            (rouge + vert + bleu) / 3;
+
+                        if (luminosite < 100) {
+                            pixelsNoirs++;
+                        }
+
+                        totalPixels++;
+                    }
+                }
+
+                const tauxNoir = pixelsNoirs / totalPixels;
+
+                // Une bulle suffisamment noircie est candidate
+                if (tauxNoir > 0.35) {
+
+                    candidats.push(position.chiffre);
+
+                }
+
+            });
+
+        // Une seule bulle doit être sélectionnée
+        if (candidats.length !== 1) {
+
+            console.log(
+                "Colonne " + colonne + " : lecture incertaine",
+                candidats
+            );
+
+            return null;
+
+        }
+
+        matricule += candidats[0];
+
+    }
+
+    console.log("Matricule lu :", matricule);
+
+    return matricule;
+}
