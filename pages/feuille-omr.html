@@ -3,48 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Feuille OMR - Evalo</title>
+
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/omr.js" defer></script>
 </head>
+
 <body>
 
-    <main class="omr-sheet">
+    <main class="omr-page">
 
-        <span class="repere repere-1"></span>
-        <span class="repere repere-2"></span>
-        <span class="repere repere-3"></span>
-        <span class="repere repere-4"></span>
+        <!-- Première feuille A5 -->
+        <section class="omr-sheet">
 
-        <header class="omr-header">
-            <h1>EVALO</h1>
-            <p>FEUILLE DE RÉPONSES</p>
-        </header>
+            <span class="repere repere-1"></span>
+            <span class="repere repere-2"></span>
+            <span class="repere repere-3"></span>
+            <span class="repere repere-4"></span>
 
-        <div class="omr-content">
+            <header class="omr-header">
+                <h1>EVALO</h1>
+                <p>FEUILLE DE RÉPONSES</p>
+            </header>
 
-            <section class="matricule-section">
-                <h2>IDENTIFICATION</h2>
-                <p>Remplir une bulle par colonne.</p>
-                <div id="grille-matricule"></div>
+            <section class="identification">
+                <p>NOM : __________________________</p>
+                <p>CLASSE : ________________________</p>
             </section>
 
-            <section class="reponses-section">
-                <h2>GRILLE DES RÉPONSES</h2>
-                <p>Remplir une seule réponse par question.</p>
-                <div id="grille-reponses"></div>
+            <div class="omr-content">
+
+                <section>
+                    <h2>MATRICULE</h2>
+                    <p>Remplir une bulle par colonne.</p>
+                    <div class="grille-matricule"></div>
+                </section>
+
+                <section>
+                    <h2>RÉPONSES</h2>
+                    <p>Noircir une seule bulle.</p>
+                    <div class="grille-reponses"></div>
+                </section>
+
+            </div>
+
+            <footer>
+                Utiliser un crayon ou un stylo noir/bleu.
+            </footer>
+
+        </section>
+
+
+        <!-- Deuxième feuille A5 -->
+        <section class="omr-sheet">
+
+            <span class="repere repere-1"></span>
+            <span class="repere repere-2"></span>
+            <span class="repere repere-3"></span>
+            <span class="repere repere-4"></span>
+
+            <header class="omr-header">
+                <h1>EVALO</h1>
+                <p>FEUILLE DE RÉPONSES</p>
+            </header>
+
+            <section class="identification">
+                <p>NOM : __________________________</p>
+                <p>CLASSE : ________________________</p>
             </section>
 
-        </div>
+            <div class="omr-content">
 
-        <footer>
-            Utiliser un crayon ou un stylo noir/bleu.
-        </footer>
+                <section>
+                    <h2>MATRICULE</h2>
+                    <p>Remplir une bulle par colonne.</p>
+                    <div class="grille-matricule"></div>
+                </section>
+
+                <section>
+                    <h2>RÉPONSES</h2>
+                    <p>Noircir une seule bulle.</p>
+                    <div class="grille-reponses"></div>
+                </section>
+
+            </div>
+
+            <footer>
+                Utiliser un crayon ou un stylo noir/bleu.
+            </footer>
+
+        </section>
 
     </main>
 
     <button onclick="window.print()" class="btn-primary no-print">
-        Imprimer la feuille
+        Imprimer les feuilles
     </button>
 
 </body>

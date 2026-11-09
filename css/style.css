@@ -361,108 +361,186 @@ td {
 }
 
 
-/* Feuille OMR */
+/* PAGE A4 CONTENANT DEUX FEUILLES A5 */
 
-.omr-sheet {
+.omr-page {
     width: 297mm;
     min-height: 210mm;
-    padding: 15mm;
     margin: 20px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: white;
+}
+
+
+/* FEUILLE A5 */
+
+.omr-sheet {
+    width: 148.5mm;
+    height: 210mm;
+    padding: 12mm 8mm;
+    position: relative;
     background: white;
     color: #0B1F44;
-    position: relative;
-    box-sizing: border-box;
+    border-right: 1px dashed #999;
+    overflow: hidden;
 }
+
+
+/* HEADER */
 
 .omr-header {
     text-align: center;
     border-bottom: 2px solid #0B1F44;
-    padding-bottom: 10px;
+    padding-bottom: 6px;
 }
 
 .omr-header h1 {
-    margin: 0;
-    font-size: 25px;
+    font-size: 20px;
 }
+
+.omr-header p {
+    font-size: 10px;
+}
+
+
+/* IDENTIFICATION */
+
+.identification {
+    margin-top: 12px;
+    font-size: 10px;
+    line-height: 2.5;
+}
+
+
+/* GRILLES */
 
 .omr-content {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 35px;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
     margin-top: 20px;
 }
 
 .omr-content h2 {
-    font-size: 15px;
+    font-size: 11px;
+    margin-bottom: 5px;
 }
 
-#grille-matricule,
-#grille-reponses {
-    margin-top: 15px;
+.omr-content p {
+    font-size: 8px;
+    margin-bottom: 8px;
 }
 
-.ligne-matricule,
-.ligne-reponse {
+
+/* MATRICULE */
+
+.ligne-matricule {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 5px;
+    padding: 3px 0;
     border-bottom: 1px solid #ddd;
 }
 
-.ligne-matricule {
-    justify-content: flex-start;
-    gap: 15px;
-}
-
-.ligne-matricule span:first-child,
-.ligne-reponse > span {
-    width: 25px;
+.ligne-matricule span:first-child {
+    width: 12px;
+    font-size: 10px;
     font-weight: bold;
 }
 
 .ligne-matricule .bulle {
-    margin-left: 17px;
+    margin: 0;
+}
+
+
+/* RÉPONSES */
+
+.ligne-reponse {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.ligne-reponse > span {
+    width: 20px;
+    font-size: 10px;
+    font-weight: bold;
 }
 
 .choix {
     display: flex;
-    gap: 35px;
+    gap: 8px;
 }
 
 .choix div {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 3px;
 }
+
+.choix small {
+    font-size: 9px;
+}
+
+
+/* BULLES */
 
 .bulle {
-    width: 15px;
-    height: 15px;
-    border: 1.5px solid black;
+    width: 4mm;
+    height: 4mm;
+    border: 1px solid black;
     border-radius: 50%;
     display: inline-block;
+    flex-shrink: 0;
 }
 
-.omr-sheet footer {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 11px;
-}
+
+/* REPÈRES */
 
 .repere {
     position: absolute;
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     background: black;
 }
 
-.repere-1 { top: 5mm; left: 5mm; }
-.repere-2 { top: 5mm; right: 5mm; }
-.repere-3 { bottom: 5mm; left: 5mm; }
-.repere-4 { bottom: 5mm; right: 5mm; }
+.repere-1 {
+    top: 5mm;
+    left: 5mm;
+}
+
+.repere-2 {
+    top: 5mm;
+    right: 5mm;
+}
+
+.repere-3 {
+    bottom: 5mm;
+    left: 5mm;
+}
+
+.repere-4 {
+    bottom: 5mm;
+    right: 5mm;
+}
+
+
+/* FOOTER */
+
+.omr-sheet footer {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 8px;
+}
+
+
+/* IMPRESSION */
 
 @media print {
+
     @page {
         size: A4 landscape;
         margin: 0;
@@ -473,32 +551,24 @@ td {
         background: white;
     }
 
-    .omr-sheet {
-        margin: 0;
+    .omr-page {
         width: 297mm;
         height: 210mm;
+        margin: 0;
+    }
+
+    .omr-sheet {
+        width: 148.5mm;
+        height: 210mm;
+        margin: 0;
+        border-right: 1px dashed #999;
     }
 
     .no-print {
-        display: none;
+        display: none !important;
     }
 }
 
-
-#generer-feuille {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 12px 20px;
-    background: var(--secondary-color);
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
-}
-
-#generer-feuille:hover {
-    opacity: 0.85;
-}
 
 
 #camera {
@@ -513,5 +583,24 @@ td {
 #demarrer-camera,
 #capturer {
     margin-top: 10px;
+}
+
+
+#generer-feuille {
+    display: block;
+    width: fit-content;
+    margin: 20px auto;
+    padding: 12px 20px;
+    background: #0B1F44;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#generer-feuille:hover {
+    background: #16366b;
 }
 

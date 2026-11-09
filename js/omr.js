@@ -1,16 +1,13 @@
-// Récupération des éléments HTML
+// Récupération des éléments
 
-const grilleMatricule = document.querySelector("#grille-matricule");
-const grilleReponses = document.querySelector("#grille-reponses");
+const grillesMatricule = document.querySelectorAll(".grille-matricule");
+const grillesReponses = document.querySelectorAll(".grille-reponses");
 
 
-// Récupération de l'identifiant de l'évaluation
+// Récupération de l'évaluation
 
 const parametres = new URLSearchParams(window.location.search);
 const idExamen = Number(parametres.get("id"));
-
-
-// Récupération de l'évaluation dans LocalStorage
 
 const examens = JSON.parse(localStorage.getItem("evalo-examens")) || [];
 
@@ -19,7 +16,7 @@ const examen = examens.find(function(item) {
 });
 
 
-// Vérifier si l'évaluation existe
+// Vérifier l'évaluation
 
 if (!examen) {
 
@@ -33,70 +30,65 @@ if (!examen) {
 }
 
 
-// Générer la grille du matricule
+// Générer les matricules
 
 function genererMatricule() {
 
-    grilleMatricule.innerHTML = "";
+    grillesMatricule.forEach(function(grille) {
 
-    for (let chiffre = 0; chiffre <= 9; chiffre++) {
+        grille.innerHTML = "";
 
-        const ligne = document.createElement("div");
+        for (let chiffre = 0; chiffre <= 9; chiffre++) {
 
-        ligne.classList.add("ligne-matricule");
+            const ligne = document.createElement("div");
 
-        ligne.innerHTML = `<span>${chiffre}</span>`;
+            ligne.classList.add("ligne-matricule");
 
-        for (let colonne = 1; colonne <= 6; colonne++) {
+            ligne.innerHTML = `<span>${chiffre}</span>`;
 
-            ligne.innerHTML += `<div class="bulle"></div>`;
+            for (let colonne = 1; colonne <= 6; colonne++) {
+
+                ligne.innerHTML += `<span class="bulle"></span>`;
+
+            }
+
+            grille.appendChild(ligne);
 
         }
 
-        grilleMatricule.appendChild(ligne);
-
-    }
+    });
 
 }
 
 
-// Générer les réponses selon le nombre de questions
+// Générer les réponses
 
 function genererReponses(nombreQuestions) {
 
-    grilleReponses.innerHTML = "";
+    grillesReponses.forEach(function(grille) {
 
-    for (let i = 1; i <= nombreQuestions; i++) {
+        grille.innerHTML = "";
 
-        const ligne = document.createElement("div");
+        for (let i = 1; i <= nombreQuestions; i++) {
 
-        ligne.classList.add("ligne-reponse");
+            const ligne = document.createElement("div");
 
-        ligne.innerHTML = `
-            <span>${String(i).padStart(2, "0")}</span>
+            ligne.classList.add("ligne-reponse");
 
-            <div class="choix">
+            ligne.innerHTML = `
+                <span>${String(i).padStart(2, "0")}</span>
 
-                <div>
-                    <small>A</small>
-                    <span class="bulle"></span>
+                <div class="choix">
+                    <div><small>A</small><span class="bulle"></span></div>
+                    <div><small>B</small><span class="bulle"></span></div>
+                    <div><small>C</small><span class="bulle"></span></div>
                 </div>
+            `;
 
-                <div>
-                    <small>B</small>
-                    <span class="bulle"></span>
-                </div>
+            grille.appendChild(ligne);
 
-                <div>
-                    <small>C</small>
-                    <span class="bulle"></span>
-                </div>
+        }
 
-            </div>
-        `;
-
-        grilleReponses.appendChild(ligne);
-
-    }
+    });
 
 }
