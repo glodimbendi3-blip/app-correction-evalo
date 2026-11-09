@@ -540,6 +540,12 @@ td {
 /* IMPRESSION */
 
 @media print {
+      .repere {
+        display: block !important;
+        background-color: black !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
 
     @page {
         size: A4 landscape;
