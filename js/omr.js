@@ -3,6 +3,7 @@
 const grillesMatricule = document.querySelectorAll(".grille-matricule");
 const grillesReponses = document.querySelectorAll(".grille-reponses");
 
+
 // Récupération de l'évaluation
 const parametres = new URLSearchParams(window.location.search);
 const idExamen = Number(parametres.get("id"));
@@ -12,6 +13,7 @@ const examens = JSON.parse(localStorage.getItem("evalo-examens")) || [];
 const examen = examens.find(function(item) {
     return item.id === idExamen;
 });
+
 
 if (!examen) {
 
@@ -25,6 +27,7 @@ if (!examen) {
     // Attendre que les grilles soient affichées
     requestAnimationFrame(function() {
         enregistrerPositionsMatricule();
+        enregistrerPositionsReponses();
     });
 }
 
@@ -44,9 +47,7 @@ function genererMatricule() {
             ligne.innerHTML = `<span>${chiffre}</span>`;
 
             for (let colonne = 1; colonne <= 6; colonne++) {
-
                 ligne.innerHTML += `<span class="bulle"></span>`;
-
             }
 
             grille.appendChild(ligne);
@@ -97,11 +98,9 @@ function enregistrerPositionsMatricule() {
     const hautDroit = feuille.querySelector(".repere-2").getBoundingClientRect();
     const basGauche = feuille.querySelector(".repere-3").getBoundingClientRect();
 
-    // Centres des repères
     const origineX = hautGauche.left + hautGauche.width / 2;
     const origineY = hautGauche.top + hautGauche.height / 2;
 
-    // Dimensions entre les repères
     const largeur = hautDroit.left + hautDroit.width / 2 - origineX;
     const hauteur = basGauche.top + basGauche.height / 2 - origineY;
 
@@ -117,24 +116,74 @@ function enregistrerPositionsMatricule() {
             const centreY = rectangle.top + rectangle.height / 2;
 
             positions.push({
-
                 chiffre: chiffre,
                 colonne: index + 1,
-
                 x: (centreX - origineX) / largeur,
                 y: (centreY - origineY) / hauteur
-
             });
 
         });
 
     });
 
-    // Sauvegarder les coordonnées
     localStorage.setItem(
         "evalo-positions-matricule",
         JSON.stringify(positions)
     );
 
+    console.log("Positions du matricule enregistrées :", positions.length);
+}
+
+
+// Enregistrer les coordonnées des bulles A, B et C
+function enregistrerPositionsReponses() {
+
+    const feuille = document.querySelector(".omr-sheet");
+
+    if (!feuille) {
+        console.error("Feuille OMR introuvable.");
+        return;
+    }
+
+    const hautGauche = feuille.querySelector(".repere-1").getBoundingClientRect();
+    const hautDroit = feuille.querySelector(".repere-2").getBoundingClientRect();
+    const basGauche = feuille.querySelector(".repere-3").getBoundingClientRect();
+
+    const origineX = hautGauche.left + hautGauche.width / 2;
+    const origineY = hautGauche.top + hautGauche.height / 2;
+
+    const largeur = hautDroit.left + hautDroit.width / 2 - origineX;
+    const hauteur = basGauche.top + basGauche.height / 2 - origineY;
+
+    const positions = [];
+
+    feuille.querySelectorAll(".ligne-reponse").forEach(function(ligne, indexQuestion) {
+
+        const choix = ligne.querySelectorAll(".choix .bulle");
+
+        choix.forEach(function(bulle, indexChoix) {
+
+            const rectangle = bulle.getBoundingClientRect();
+
+            const centreX = rectangle.left + rectangle.width / 2;
+            const centreY = rectangle.top + rectangle.height / 2;
+
+            positions.push({
+                question: indexQuestion + 1,
+                choix: ["A", "B", "C"][indexChoix],
+                x: (centreX - origineX) / largeur,
+                y: (centreY - origineY) / hauteur
+            });
+
+        });
+
+    });
+
+    localStorage.setItem(
+        "evalo-positions-reponses",
+        JSON.stringify(positions)
+    );
+
+    console.log("Positions des réponses enregistrées :", positions.length);
 }
 

@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Notes des élèves - Evalo</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="../js/note.js" defer></script>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <a href="../index.html">← Retour au tableau de bord</a>
+
+        <h1>Résultats des évaluations</h1>
+
+        <!-- Sélection de l'évaluation -->
+        <section>
+
+            <label for="selection-examen">
+                Choisir une évaluation
+            </label>
+
+            <select id="selection-examen">
+                <option value="">Sélectionner une évaluation</option>
+            </select>
+            
+<!-- Informations de l'évaluation sélectionnée -->
+<section id="informations-examen" hidden>
+
+    <h2>Informations de l'évaluation</h2>
+
+    <p>Titre : <strong id="info-titre"></strong></p>
+
+    <p>Classe : <strong id="info-classe"></strong></p>
+
+    <p>Option : <strong id="info-option"></strong></p>
+
+    <p>Nombre de questions : <strong id="info-questions"></strong></p>
+
+    <p>Total des points : <strong id="info-total"></strong></p>
+
+</section>
+
+
+
+        </section>
+
+
+        <!-- Statistiques -->
+        <section class="statistiques">
+
+            <p>
+                Copies corrigées :
+                <strong id="copies-corrigees">0</strong>
+            </p>
+
+            <p>
+                Copies restantes :
+                <strong id="copies-restantes">0</strong>
+            </p>
+
+        </section>
+
+
+        <!-- Tableau des résultats -->
+        <section>
+
+            <h2>Liste des résultats</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Matricule</th>
+                        <th>Nom</th>
+                        <th>Note</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="liste-resultats">
+
+                    <tr>
+                        <td colspan="4">
+                            Sélectionnez une évaluation.
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</body>
+</html>
+

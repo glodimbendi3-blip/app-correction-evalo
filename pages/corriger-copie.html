@@ -1,15 +1,15 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Scanner le corrigé - Evalo</title>
+    <title>Scanner - Evalo</title>
 
     <link rel="stylesheet" href="../css/style.css">
-    
+
     <script async src="https://docs.opencv.org/4.x/opencv.js"></script>
-<script src="../js/scanner.js" defer></script>
     <script src="../js/scanner.js" defer></script>
 </head>
 
@@ -17,7 +17,7 @@
 
     <header class="header">
         <h1>EVALO</h1>
-        <p>Scanner le corrigé de référence</p>
+        <p>Scanner le corrigé ou une copie</p>
     </header>
 
     <main class="container">
@@ -28,7 +28,19 @@
 
         <section class="form-section">
 
-            <h2>Scanner le corrigé</h2>
+            <h2>Paramètres du scan</h2>
+
+            <label for="selection-examen">Évaluation :</label>
+            <select id="selection-examen">
+                <option value="">Sélectionner une évaluation</option>
+            </select>
+
+            <label for="type-scan">Type de scan :</label>
+            <select id="type-scan">
+                <option value="">Choisir une opération</option>
+                <option value="corrige">Corrigé officiel</option>
+                <option value="eleve">Copie d'un élève</option>
+            </select>
 
             <video id="camera" autoplay playsinline></video>
 
@@ -50,3 +62,4 @@
 
 </body>
 </html>
+
